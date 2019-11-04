@@ -1,0 +1,85 @@
+{
+    "name": "acquia/df-project",
+    "description": "Project template for Drupal 8 sites built with the Demo Framework distribution.",
+    "type": "project",
+    "license": "GPL-2.0+",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "drush/drush": "^9.0",
+        "drupal/console": "^1.9.0"
+    },
+    "require": {
+        "acquia/df": "^4.0"
+    },
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        "assets": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
+        "lift": {
+            "type": "vcs",
+            "url": "https://github.com/acquia/lift-sdk-php"
+        },
+        "dev": {
+            "type": "github",
+            "url": "https://github.com/acquia/lightning-dev",
+            "no-api": true
+        }
+    },
+    "scripts": {
+        "post-install-cmd": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "post-update-cmd": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
+        "nuke": "rm -r -f docroot/modules/contrib docroot/profiles vendor composer.lock"
+    },
+    "extra": {
+        "installer-types": [
+            "bower-asset",
+            "npm-asset"
+        ],
+        "installer-paths": {
+            "docroot/core": [
+                "type:drupal-core"
+            ],
+            "docroot/libraries/{$name}": [
+                "type:drupal-library",
+                "type:bower-asset",
+                "type:npm-asset"
+            ],
+            "docroot/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "docroot/profiles/{$name}": [
+                "type:drupal-profile"
+            ],
+            "docroot/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/contrib/{$name}": [
+                "type:drupal-drush"
+            ]
+        },
+        "enable-patching": true,
+        "patches-ignore": {
+            "drupal/lightning_layout": {
+                "drupal/core": {
+                    "2955065 - Customized layout does not display for node with customizations enabled when using full content view mode": "https://www.drupal.org/files/issues/2019-03-25/2955065-25.patch"
+                }
+            },
+            "drupal/lightning_media": {
+                "drupal/entity_browser": {
+                    "2877751 - Inform users how many items they can add to a field that uses an entity browser": "https://www.drupal.org/files/issues/2018-06-28/2877751-39-8.x-2.x.patch"
+                }
+            },
+            "drupal/jsonapi_schema": {
+               "drupal/core": {
+                 "3014277 - ResourceTypes should know about their fields": "https://www.drupal.org/files/issues/2019-06-06/3014277--resource-fields--36.patch"
+              }
+            }
+        }
+    }
+}
