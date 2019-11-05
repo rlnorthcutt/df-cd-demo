@@ -11,7 +11,7 @@
     },
     "require": {
         "acquia/df": "^4.0",
-        "acquia/blt": "^10.0.0"
+        "acquia/blt": "^9.0.0"
     },
     "repositories": {
         "drupal": {
