@@ -76,3 +76,8 @@ modules:
     uninstall:
       - devel
       - views_ui
+#Disable behat
+disable-targets:
+  tests:
+    behat:
+      run: true
