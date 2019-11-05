@@ -1,3 +1,7 @@
+# Ignore system and dev files
+*.DS_Store
+*.idea
+
 # Ignore binaries.
 /bin
 
